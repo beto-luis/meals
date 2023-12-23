@@ -9,17 +9,60 @@ class MealDetailScreen extends StatelessWidget {
     final meal = ModalRoute.of(context)?.settings.arguments as Meal;
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.pink,
-        title: Text(
-          meal.title,
-          style: const TextStyle(color: Colors.white, fontSize: 28),
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.pink,
+          title: Text(
+            meal.title,
+            style: const TextStyle(color: Colors.white, fontSize: 28),
+          ),
         ),
-      ),
-      body: const Center(
-        child: Text('Detalhes da Refeição'),
-      ),
-    );
+        body: Column(
+          children: <Widget>[
+            SizedBox(
+              height: 300,
+              width: double.infinity,
+              child: Image.network(
+                meal.imageUrl,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(
+                vertical: 10,
+              ),
+              child: Text(
+                'Ingredientes',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+            ),
+            Container(
+              width: 300,
+              height: 200,
+              padding: const EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: ListView.builder(
+                itemCount: meal.ingredients.length,
+                itemBuilder: (ctx, index) {
+                  return Card(
+                    color: Theme.of(context).colorScheme.secondary,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 5,
+                        horizontal: 10,
+                      ),
+                      child: Text(meal.ingredients[index]),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ));
   }
 }
