@@ -17,7 +17,7 @@ class CategoriesMealsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.pink,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text(
           category.title,
           style: const TextStyle(color: Colors.white, fontSize: 28),
