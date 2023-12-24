@@ -3,7 +3,9 @@ import '../components/main_drawer.dart';
 import '../models/settings.dart';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+  final Function(Settings) onSettingsChanged;
+
+  const SettingsScreen(this.onSettingsChanged, {super.key});
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -19,11 +21,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
     Function(bool) onChange,
   ) {
     return SwitchListTile.adaptive(
-      title: Text(title),
-      subtitle: Text(subtitle),
-      value: value,
-      onChanged: onChange,
-    );
+        title: Text(title),
+        subtitle: Text(subtitle),
+        value: value,
+        onChanged: (value) {
+          onChange(value);
+          widget.onSettingsChanged(settings);
+        });
   }
 
   @override
@@ -36,7 +40,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Text(
               'Configurações',
               style: Theme.of(context).textTheme.titleLarge,
@@ -67,7 +71,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   'Vegetariana',
                   'Só exibe refeições vegetarianas!',
                   settings.isVegetarian,
-                  (value) => setState(() => settings.isVegetarian= value),
+                  (value) => setState(() => settings.isVegetarian = value),
                 ),
               ],
             ),
