@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'screens/tabs_screen.dart';
-import 'screens/categories_screen.dart';
 import 'screens/categories_meals_screen.dart';
 import 'utils/app_routes.dart';
 import 'screens/meal_detail_screen.dart';
@@ -14,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Vamos Cozinhas?',
+      title: 'Vamos Cozinhar?',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.grey,
